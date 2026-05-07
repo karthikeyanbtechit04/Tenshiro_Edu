@@ -56,7 +56,7 @@ const Domains = () => {
     useEffect(() => {
         const fetchDomains = async () => {
             try {
-                const res = await axios.get('/api/domains');
+                const res = await axios.get('https://tenshiro.onrender.com/api/domains');
                 // Ensure data has inferred properties for elite UI
                 const enrichedData = (res.data || []).map(d => ({
                     ...d,
