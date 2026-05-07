@@ -21,7 +21,7 @@ app.use(passport.initialize());
 
 // ✅ Test Route
 app.get("/", (req, res) => {
-    res.json({ message: "Backend is running! 🚀" });
+    res.json({ message: "Backend is aaa running! 🚀" });
 });
 
 // ✅ Routes
