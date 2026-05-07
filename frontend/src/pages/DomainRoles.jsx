@@ -14,7 +14,7 @@ const DomainRoles = () => {
     useEffect(() => {
         const fetchRoles = async () => {
             try {
-                const res = await axios.get(`https://tenshiro.onrender.com/api/domains/${id}/roles`);
+                const res = await axios.get(`/api/domains/${id}/roles`);
                 setRoles(res.data);
             } catch (err) {
                 console.error(err);
