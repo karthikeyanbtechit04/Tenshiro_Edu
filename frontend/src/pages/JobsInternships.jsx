@@ -163,7 +163,7 @@ const JobsInternships = () => {
             const [jobsRes, appsRes, domainsRes] = await Promise.all([
                 axios.get('/api/jobs'),
                 axios.get('/api/applications'),
-                axios.get('/api/domains')
+                axios.get('https://tenshiro.onrender.com/api/domains')
             ]);
 
             const rolesRes = await Promise.all(domainsRes.data.map(domain =>
