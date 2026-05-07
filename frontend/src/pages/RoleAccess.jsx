@@ -92,7 +92,7 @@ const RoleAccess = () => {
             setRoadmapLoading(true);
 
             // Try to fetch customized roadmap from AI
-            const aiRes = await axios.post('http://localhost:5000/api/ai/roadmap', {
+            const aiRes = await axios.post('https://tenshiro.onrender.com/api/ai/roadmap', {
                 roleId,
                 roleTitle,
                 language: lang,

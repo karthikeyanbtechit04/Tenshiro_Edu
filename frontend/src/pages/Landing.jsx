@@ -64,7 +64,7 @@ const Landing = () => {
 
     const onSelectAccount = async (account) => {
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/dev-login', {
+            const res = await axios.post('https://tenshiro.onrender.com/api/auth/dev-login', {
                 email: account.email,
                 username: account.name
             });
