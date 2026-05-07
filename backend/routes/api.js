@@ -28,7 +28,7 @@ router.get('/auth/google',
 router.get('/auth/google/callback',
     passport.authenticate('google', {
         session: false,
-        failureRedirect: 'http://localhost:5173/login?error=auth_failed'
+        failureRedirect: 'https://tenshiro.onrender.com/login?error=auth_failed'
     }),
     userController.googleAuth
 );
