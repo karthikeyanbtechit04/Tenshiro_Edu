@@ -9,7 +9,11 @@ const app = express();
 
 // ✅ Middleware FIRST - correct order
 app.use(cors({
-    origin: "https://tenshiro-edu.vercel.app",
+      origin: [
+    'https://tenshiro-edu.vercel.app',
+    'http://localhost:5173',        // ← add this
+    'http://localhost:5174',        // optional: other local ports
+  ],
     credentials: true
 }));
 app.use(helmet());
