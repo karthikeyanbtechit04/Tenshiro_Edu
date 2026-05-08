@@ -14,7 +14,7 @@ const DomainRoles = () => {
     useEffect(() => {
         const fetchRoles = async () => {
             try {
-                const res = await axios.get(`https://tenshiro.onrender.com/api/domains/${id}/roles`);
+                const res = await axios.get(`/api/domains/${id}/roles`);
                 setRoles(res.data);
             } catch (err) {
                 console.error(err);
@@ -45,9 +45,9 @@ const DomainRoles = () => {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     style={{
-                        padding: '1rem 1rem 1rem 3.5rem', 
+                        padding: '1rem 1rem 1rem 3.5rem',
                         borderRadius: '16px',
-                        backgroundColor: 'var(--bg-card)', 
+                        backgroundColor: 'var(--bg-card)',
                         fontSize: '1.05rem',
                         boxShadow: 'var(--shadow)'
                     }}
