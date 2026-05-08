@@ -11,7 +11,7 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0
 });
-// db.js-ல கீழே add பண்ணுங்க
+
 pool.getConnection((err, connection) => {
   if (err) {
     console.error('DB Connection Failed:', err.message);
