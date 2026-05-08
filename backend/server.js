@@ -9,10 +9,10 @@ const app = express();
 
 // ✅ Middleware FIRST - correct order
 app.use(cors({
-      origin: [
-    'https://tenshiro-edu.vercel.app',
-    'http://localhost:5173',        // ← add this
-    'http://localhost:5174',        // optional: other local ports
+ origin: [
+     'https://tenshiro.onrender.com',
+     'http://localhost:5173',        // ← add this
+     'http://localhost:5174',        // optional: other local ports
   ],
     credentials: true
 }));
