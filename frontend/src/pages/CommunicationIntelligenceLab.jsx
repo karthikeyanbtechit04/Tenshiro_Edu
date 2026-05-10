@@ -9,6 +9,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import './CommunicationIntelligenceLab.css';
+import { Capacitor } from '@capacitor/core';
+import { SpeechRecognition } from '@capacitor-community/speech-recognition';
 
 const CommunicationIntelligenceLab = () => {
     const { user } = useAuth();
@@ -224,25 +226,48 @@ const CommunicationIntelligenceLab = () => {
         };
     }
 }, []);
+   
+   const isNative = Capacitor.isNativePlatform();
 
-    const startRecording = () => {
-        if (recognitionRef.current) {
-            setIsRecording(true);
-            setRecordedText('');
-            setSpeechAnalysis(null);
-            recognitionRef.current.start();
-        } else {
-            alert('Speech recognition is not supported in this browser. Try Chrome.');
-        }
-    };
+const startRecording = async () => {
+    setIsRecording(true);
+    setRecordedText('');
+    setSpeechAnalysis(null);
 
-    const stopRecording = async () => {
-        if (recognitionRef.current) {
-            setIsRecording(false);
-            recognitionRef.current.stop();
-            analyzeSpeech(recordedText);
+    if (isNative) {
+        // APK — Capacitor plugin
+        await SpeechRecognition.requestPermission();
+        await SpeechRecognition.start({
+            language: 'en-US',
+            partialResults: true,
+            popup: false,
+        });
+        SpeechRecognition.addListener('partialResults', (data) => {
+            setRecordedText(data.matches[0] || '');
+        });
+    } else {
+        // Browser — Web Speech API
+        if (recognitionRef.current && !isRecording) {
+            try {
+                recognitionRef.current.abort();
+                setTimeout(() => recognitionRef.current.start(), 200);
+            } catch (e) {
+                setIsRecording(false);
+            }
         }
-    };
+    }
+};
+
+const stopRecording = async () => {
+    setIsRecording(false);
+    if (isNative) {
+        await SpeechRecognition.stop();
+    } else {
+        recognitionRef.current?.stop();
+    }
+    analyzeSpeech(recordedText);
+};
+
 
     const analyzeSpeech = async (text) => {
         if (!text.trim()) return;
