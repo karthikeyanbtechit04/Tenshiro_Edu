@@ -11,8 +11,8 @@ const app = express();
 app.use(cors({
  origin: [
      'https://tenshiro.onrender.com',
-     'http://localhost:5173',        // ← add this
-     'http://localhost:5174',        // optional: other local ports
+     'http://localhost:5173',
+     'http://localhost:5174'
   ],
     credentials: true
 }));
