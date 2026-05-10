@@ -12,7 +12,9 @@ import '@fontsource/plus-jakarta-sans/400.css';
 import '@fontsource/plus-jakarta-sans/500.css';
 import '@fontsource/plus-jakarta-sans/600.css';
 import '@fontsource/plus-jakarta-sans/700.css';
-
+import axios from 'axios';
+ 
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Suspense fallback={<div className="loading-screen">Loading...</div>}>
