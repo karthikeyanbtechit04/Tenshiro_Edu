@@ -138,7 +138,7 @@ const RoleAccess = () => {
         try {
             setJobsLoading(true);
             // Switch to AI-driven job recommendations for "real-time" feel and higher count
-            const res = await axios.post('https://tenshiro.onrender.com/api/ai/job-recommendation', {
+            const res = await axios.post('/api/ai/job-recommendation', {
                 role: roleTitle
             }, config);
 
@@ -152,7 +152,7 @@ const RoleAccess = () => {
             console.error('Jobs fetch failed, falling back to basic data', e);
             // Fallback to basic DB jobs if AI fails
             try {
-                const dbRes = await axios.get(`https://tenshiro.onrender.com/api/jobs/role/${roleId}`, config);
+                const dbRes = await axios.get(`/api/jobs/role/${roleId}`, config);
                 if (Array.isArray(dbRes.data)) {
                     setJobs(dbRes.data);
                 } else {
@@ -170,7 +170,7 @@ const RoleAccess = () => {
     const fetchCourses = async (roleTitle, domainId, config, lang) => {
         try {
             setCoursesLoading(true);
-            const res = await axios.post('https://tenshiro.onrender.com/api/ai/course-recommendation', {
+            const res = await axios.post('/api/ai/course-recommendation', {
                 role: roleTitle,
                 domainId: domainId,
                 language: lang
@@ -186,7 +186,7 @@ const RoleAccess = () => {
     const fetchProjects = async (roleTitle, domainId, config, lang) => {
         try {
             setProjectsLoading(true);
-            const res = await axios.post('https://tenshiro.onrender.com/api/ai/project-suggestion', {
+            const res = await axios.post('/api/ai/project-suggestion', {
                 role: roleTitle,
                 domainId: domainId,
                 language: lang
@@ -202,7 +202,7 @@ const RoleAccess = () => {
     const fetchPremiumOverview = async (roleTitle, domainName, config, lang) => {
         try {
             setOverviewLoading(true);
-            const res = await axios.post('https://tenshiro.onrender.com/api/ai/premium-overview', {
+            const res = await axios.post('/api/ai/premium-overview', {
                 roleTitle: roleTitle,
                 domainName: domainName,
                 language: lang

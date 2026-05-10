@@ -32,7 +32,7 @@ const InterviewEngine = ({ config, onComplete, onCancel }) => {
         const fetchQuestions = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.post('http://localhost:5000/api/interview/generate', config, {
+                const res = await axios.post('https://tenshiro.onrender.com/api/interview/generate', config, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setQuestions(res.data.questions);
@@ -111,7 +111,7 @@ const InterviewEngine = ({ config, onComplete, onCancel }) => {
             setAnalyzing(true);
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.post('http://localhost:5000/api/interview/analyze', {
+                const res = await axios.post('https://tenshiro.onrender.com/api/interview/analyze', {
                     questions,
                     answers: newAnswers,
                     config
