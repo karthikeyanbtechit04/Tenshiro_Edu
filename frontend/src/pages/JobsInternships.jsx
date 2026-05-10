@@ -160,11 +160,11 @@ const JobsInternships = () => {
 
     const fetchData = async () => {
         try {
-                const API = import.meta.env.VITE_API_URL;
+    
             const [jobsRes, appsRes, domainsRes] = await Promise.all([
-                    axios.get(`${API}/api/domains`),
-                    axios.get(`${API}/api/jobs`),
-                    axios.get(`${API}/api/applications`)
+                axios.get('/api/jobs'),
+                axios.get('/api/applications'),
+                axios.get('/api/domains')
             ]);
 
             const rolesRes = await Promise.all(domainsRes.data.map(domain =>
