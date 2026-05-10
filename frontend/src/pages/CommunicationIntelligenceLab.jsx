@@ -215,12 +215,9 @@ const CommunicationIntelligenceLab = () => {
             setRecordedText(transcript);
         };
 
-        // ← இதை add பண்ணு
         recognitionRef.current.onend = () => {
             setIsRecording(false);
         };
-
-        // ← இதை add பண்ணு
         recognitionRef.current.onerror = (event) => {
             console.log('Speech error:', event.error);
             setIsRecording(false);
