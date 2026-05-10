@@ -199,23 +199,34 @@ const CommunicationIntelligenceLab = () => {
     };
 
     // Speech Recognition Setup
-    useEffect(() => {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (SpeechRecognition) {
-            recognitionRef.current = new SpeechRecognition();
-            recognitionRef.current.continuous = true;
-            recognitionRef.current.interimResults = true;
-            recognitionRef.current.lang = 'en-US';
+   useEffect(() => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+        recognitionRef.current = new SpeechRecognition();
+        recognitionRef.current.continuous = true;
+        recognitionRef.current.interimResults = true;
+        recognitionRef.current.lang = 'en-US';
 
-            recognitionRef.current.onresult = (event) => {
-                const transcript = Array.from(event.results)
-                    .map(result => result[0])
-                    .map(result => result.transcript)
-                    .join('');
-                setRecordedText(transcript);
-            };
-        }
-    }, []);
+        recognitionRef.current.onresult = (event) => {
+            const transcript = Array.from(event.results)
+                .map(result => result[0])
+                .map(result => result.transcript)
+                .join('');
+            setRecordedText(transcript);
+        };
+
+        // ← இதை add பண்ணு
+        recognitionRef.current.onend = () => {
+            setIsRecording(false);
+        };
+
+        // ← இதை add பண்ணு
+        recognitionRef.current.onerror = (event) => {
+            console.log('Speech error:', event.error);
+            setIsRecording(false);
+        };
+    }
+}, []);
 
     const startRecording = () => {
         if (recognitionRef.current) {
